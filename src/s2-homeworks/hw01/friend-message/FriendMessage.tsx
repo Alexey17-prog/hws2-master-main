@@ -1,50 +1,48 @@
-import React from 'react';
-import s from './FriendMessage.module.css';
-import { MessageType } from '../HW1'; // Импортируем тип MessageType из HW1
+import React from 'react'
+import s from './FriendMessage.module.css'
+import { MessageType } from "../HW1"; // Импортируем тип MessageType
 
-// Описание типа FriendMessagePropsType
+// Создаем тип для пропсов
 export type FriendMessagePropsType = {
     message: MessageType;
-};
+}
 
 // Отображение приходящих данных
-const FriendMessage: React.FC<FriendMessagePropsType> = (props) => {
-    const { message } = props;
-
+const FriendMessage = (props: FriendMessagePropsType) => {
     return (
         <div
-            id={'hw1-friend-message-' + message.id}
+            id={'hw1-friend-message-' + props.message.id}
             className={s.friendMessage}
         >
             <div className={s.friendImageAndText}>
                 <img
-                    id={'hw1-friend-avatar-' + message.id}
-                    src={message.user.avatar} // Используем аватар из пропсов
-                    alt="friend avatar"
+                    id={'hw1-friend-avatar-' + props.message.id}
+                    src={props.message.user.avatar} // Используем аватар из пропсов
+                    alt="Friend avatar" // Добавляем альтернативный текст для доступности
                 />
                 <div className={s.friendText}>
                     <div
-                        id={'hw1-friend-name-' + message.id}
+                        id={'hw1-friend-name-' + props.message.id}
                         className={s.friendName}
                     >
-                        {message.user.name} {/* Используем имя из пропсов */}
+                        {props.message.user.name} {/* Отображаем имя пользователя */}
                     </div>
                     <pre
-                        id={'hw1-friend-text-' + message.id}
+                        id={'hw1-friend-text-' + props.message.id}
                         className={s.friendMessageText}
                     >
-                        {message.message.text} {/* Используем текст сообщения из пропсов */}
+                        {props.message.message.text} {/* Отображаем текст сообщения */}
                     </pre>
                 </div>
             </div>
             <div
-                id={'hw1-friend-time-' + message.id}
+                id={'hw1-friend-time-' + props.message.id}
                 className={s.friendTime}
             >
-                {message.message.time} {/* Используем время из пропсов */}
+                {props.message.message.time} {/* Отображаем время сообщения */}
             </div>
         </div>
-    );
-};
+    )
+}
 
 export default FriendMessage;
